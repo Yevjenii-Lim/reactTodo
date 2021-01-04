@@ -3,11 +3,11 @@ import React from 'react'
 let initialState = {
     formText: '',
     data: [
-        {done: false, text: 'wake up'},
-        {done: false, text: 'make breakfast'},
-        {done: false, text: 'you tube'},
-        {done: false, text: 'run'},
-        {done: false, text: <input></input>},
+        // {completed: false, title: 'wake up'},
+        // {completed: false, title: 'make breakfast'},
+        // {completed: false, title: 'you tube'},
+        // {completed: false, title: 'run'},
+        // {completed: false, title: <input></input>},
     ]
 }
 
@@ -16,8 +16,8 @@ let TodoReducer = (state = initialState, action) => {
     if(action.type === 'addTodo') {
 
         let newTodo = {
-            done: false,
-            text: state.formText
+            completed: false,
+            title: state.formText
         }
         return {
             ...state,
@@ -26,7 +26,7 @@ let TodoReducer = (state = initialState, action) => {
         }
 
     }else if(action.type === 'textChange'){
-   
+        
         return {
             ...state,
             formText: action.text
@@ -50,6 +50,11 @@ let TodoReducer = (state = initialState, action) => {
             ...state,
             data: [...state.data]
         }
+    }else if(action.type === 'uploadTodos') {
+        return {
+            ...state,
+            data: [...state.data,...action.todos]
+        }
     }
     else {
         return state
@@ -61,6 +66,6 @@ export let addTodoActionCreator = (text) => ({type :'addTodo', text: text})
 export let deleteTodoActionCreator = (id) => ({type: 'deleteTodo', id: id})
 export let changeDoneActionCreator = (id) => ({type: 'changeState', id:id})
 export let editTextTodoActionCreator = (id) => ({type: "editText", id:id})
-
+export let uploadTodoActionCreactor = (todos) => ({type: 'uploadTodos', todos: todos})
 
 export default TodoReducer

@@ -1,21 +1,44 @@
 // import { connect } from 'http2';
 import { connect } from 'react-redux';
 import React from 'react'
-import { addTodoActionCreator, textChangerActionCreator } from '../react-redux/addTodoReducer';
+import { addTodoActionCreator, textChangerActionCreator, uploadTodoActionCreactor } from '../react-redux/addTodoReducer';
+import * as axios from 'axios';
 
-let Form = (props) => {
+
+
+class Form extends React.Component {
+
     // debugger
-    let text = React.createRef()
-    let changeText = () => {
-        let newText = text.current.value;
-        props.textChangerActionCreator(newText)
+    // constructor(props) {
+    //     super(props)
+    //     this.text = React.createRef()
+    // }
+    componentDidMount() {
+        axios.get("https://jsonplaceholder.typicode.com/todos/?_limit=5")
+        .then(resoponce => this.props.uploadTodos(resoponce.data))
     }
-    return (
+    text = React.createRef()
+    changeText = () => {
+        let newText = this.text.current.value;
+        this.props.textChangerActionCreator(newText)
+    
+    }
+    uploader = () => {
+        axios.get("https://jsonplaceholder.typicode.com/todos/?_limit=5")
+        .then(resoponce => this.props.uploadTodos(resoponce.data))
+    }
+    addTodo = () => {
+        this.props.addTodo()
+    }
+    render() {
+         return (
         <div>
-            <input type="text" onChange={changeText} value={props.formText} name="" id="" ref={text}/>
-            <button onClick={props.addTodo}>Add</button>
+            <input type="text" onChange={this.changeText} value={this.props.formText} name="" id="" ref={this.text}/>
+            <button onClick={this.addTodo}>Add</button>
+            <button onClick={this.uploader}>Upload Todos</button>
         </div>
     )
+    }
 }
 
 let mapStateToProps = (state) => {
@@ -27,7 +50,8 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return ({
         addTodo: (text) => {dispatch(addTodoActionCreator(text))},
-        textChangerActionCreator: (text) => dispatch(textChangerActionCreator(text))
+        textChangerActionCreator: (text) => dispatch(textChangerActionCreator(text)),
+        uploadTodos: (todos) => dispatch(uploadTodoActionCreactor(todos))
     })
 }
 
