@@ -3,16 +3,11 @@ import { connect } from 'react-redux';
 import React from 'react'
 import { addTodoActionCreator, textChangerActionCreator, uploadTodoActionCreactor } from '../react-redux/addTodoReducer';
 import * as axios from 'axios';
+import s from './styles.module.css'
 
 
 
 class Form extends React.Component {
-
-    // debugger
-    // constructor(props) {
-    //     super(props)
-    //     this.text = React.createRef()
-    // }
     componentDidMount() {
         axios.get("https://jsonplaceholder.typicode.com/todos/?_limit=5")
         .then(resoponce => this.props.uploadTodos(resoponce.data))
@@ -21,21 +16,15 @@ class Form extends React.Component {
     changeText = () => {
         let newText = this.text.current.value;
         this.props.textChangerActionCreator(newText)
-    
-    }
-    uploader = () => {
-        axios.get("https://jsonplaceholder.typicode.com/todos/?_limit=5")
-        .then(resoponce => this.props.uploadTodos(resoponce.data))
     }
     addTodo = () => {
         this.props.addTodo()
     }
     render() {
          return (
-        <div>
+        <div className={s.form}>
             <input type="text" onChange={this.changeText} value={this.props.formText} name="" id="" ref={this.text}/>
             <button onClick={this.addTodo}>Add</button>
-            <button onClick={this.uploader}>Upload Todos</button>
         </div>
     )
     }

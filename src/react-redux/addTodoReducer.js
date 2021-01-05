@@ -38,7 +38,7 @@ let TodoReducer = (state = initialState, action) => {
             data: [...state.data]
         }
     }else if(action.type === 'changeState') {
-        state.data[action.id].done = !state.data[action.id].done
+        state.data[action.id].completed = !state.data[action.id].completed
         return {
             ...state,
             data: [...state.data]
@@ -51,9 +51,24 @@ let TodoReducer = (state = initialState, action) => {
             data: [...state.data]
         }
     }else if(action.type === 'uploadTodos') {
+    
         return {
             ...state,
             data: [...state.data,...action.todos]
+        }
+    }else if (action.type === "filterCompleted") {
+        let stateCopy = state.data.filter(i => i.completed)
+        console.log(state.data.filter(i => i.completed))
+        return {
+            ...state, 
+            data: stateCopy
+        }
+    }else if (action.type === 'filterNotCompleted') {
+        let stateCopy = state.data.filter(i => !i.completed)
+        console.log(state.data.filter(i => !i.completed))
+        return {
+            ...state, 
+            data: stateCopy
         }
     }
     else {
@@ -67,5 +82,7 @@ export let deleteTodoActionCreator = (id) => ({type: 'deleteTodo', id: id})
 export let changeDoneActionCreator = (id) => ({type: 'changeState', id:id})
 export let editTextTodoActionCreator = (id) => ({type: "editText", id:id})
 export let uploadTodoActionCreactor = (todos) => ({type: 'uploadTodos', todos: todos})
+export let filterCompletedAC = () => ({type: 'filterCompleted'})
+export let filterNotCompletedAC = () => ({type: 'filterNotCompleted'})
 
 export default TodoReducer

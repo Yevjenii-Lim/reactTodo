@@ -1,14 +1,13 @@
 // import { connect } from 'http2';
 import { connect } from 'react-redux';
 import React from 'react';
-
 import Item from './Item';
-import { changeDoneActionCreator, deleteTodoActionCreator, editTextTodoActionCreator } from '../react-redux/addTodoReducer';
+import { changeDoneActionCreator, deleteTodoActionCreator, editTextTodoActionCreator, uploadTodoActionCreactor } from '../react-redux/addTodoReducer';
 
 
 let TodoItems = (props) => {
 // debugger
-    let Items = props.data.map((i, index) => <Item chengeState={props.changeState} checked={i.complited} text={i.title} delete={props.delete} done={i.complited} id={index} key={index} editText={props.editText}></Item>)
+    let Items = props.data.map((i, index) => <Item chengeState={props.changeState} checked={i.completed} text={i.title} delete={props.delete} done={i.complited} id={index} key={index} editText={props.editText}></Item>)
 
     return (
         <div>
@@ -28,7 +27,8 @@ let mapDispatchToProps = (dispatch) => {
     return ({
         delete: (id) => dispatch(deleteTodoActionCreator(id)),
         changeState: (id) => dispatch(changeDoneActionCreator(id)),
-        editText: (id) => dispatch(editTextTodoActionCreator(id))
+        editText: (id) => dispatch(editTextTodoActionCreator(id)),
+        uploader: (todos) => dispatch(uploadTodoActionCreactor(todos))
     })
 }
 
