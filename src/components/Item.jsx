@@ -3,24 +3,28 @@ import React from "react";
 import s from "./styles.module.css";
 
 let Item = (props) => {
-
-
   let hide;
   let transparent;
+  let background;
   if (props.done === true) {
     hide = s.hide;
-  
   } else {
     hide = props.checked;
-}
-if(props.checked === true) {
+  }
+  if (props.checked === true) {
     transparent = s.blur;
-}else {
+  } else {
     transparent = "null";
   }
-  let clasess = s.item + " " + hide + " " + transparent;
+  if (props.id % 2 === 0) {
+    background = s.odd;
+  } else {
+    background = s.even;
+  }
 
-//   console.log(clasess);
+  let clasess = s.item + " " + hide + " " + transparent + " " + background;
+
+  //   console.log(clasess);
   return (
     <div className={clasess}>
       <input

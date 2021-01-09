@@ -46,10 +46,10 @@ input:checked ~ label {
     outline: none;
     cursor: pointer;
 }
-.item:nth-child(even) {
+.even {
     background-color: thistle;
 }
-.item:nth-child(odd) {
+.odd {
     background-color: tomato;
 }
 
