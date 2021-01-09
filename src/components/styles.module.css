@@ -7,13 +7,52 @@ input:checked ~ label {
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: 1em 0;
-    border: 1px solid black;
+    padding: 1em 1em;
+    box-sizing: border-box;
 }
 
 .header {
+    border: 1px solid black;
     text-align: center;
+    background-color: rgb(163, 163, 245);
+    padding: 1em;
+}
+.header h1 {
+    margin: 0;
 }
 .form {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+.hide {
+    display: none;
+}
+.input {
+    height: 50px;
+    width: 60%;
+    font-size: 2em;
+    outline: none;
+}
+.btnAdd {
+    width: 50px;
+}
+.itemText {
+    font-size: 1em;
+}
+.btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.item:nth-child(even) {
+    background-color: thistle;
+}
+.item:nth-child(odd) {
+    background-color: tomato;
+}
+
+.blur {
+    opacity: 0.5;
 }

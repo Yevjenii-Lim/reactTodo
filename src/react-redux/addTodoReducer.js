@@ -14,8 +14,12 @@ let initialState = {
 let TodoReducer = (state = initialState, action) => {
     // debugger
     if(action.type === 'addTodo') {
-
-        let newTodo = {
+        if(state.formText.length === 0) {
+            return {
+                ...state
+            }
+        }else {
+              let newTodo = {
             completed: false,
             title: state.formText
         }
@@ -24,6 +28,8 @@ let TodoReducer = (state = initialState, action) => {
             data: [...state.data, newTodo],
             formText: '',
         }
+        }
+      
 
     }else if(action.type === 'textChange'){
         
@@ -57,18 +63,23 @@ let TodoReducer = (state = initialState, action) => {
             data: [...state.data,...action.todos]
         }
     }else if (action.type === "filterCompleted") {
-        let stateCopy = state.data.filter(i => i.completed)
-        console.log(state.data.filter(i => i.completed))
+        state.data.forEach(i => i.completed ? i.done = false : i.done = true)
         return {
             ...state, 
-            data: stateCopy
+            data: [...state.data]
         }
     }else if (action.type === 'filterNotCompleted') {
-        let stateCopy = state.data.filter(i => !i.completed)
-        console.log(state.data.filter(i => !i.completed))
+        state.data.forEach(i => i.completed ? i.done = true : i.done = false)
         return {
             ...state, 
-            data: stateCopy
+            data: [...state.data]
+        }
+    }else if (action.type === 'showAll') {
+        state.data.forEach(i => i.done = false) 
+        // console.log('asdas')
+        return {
+            ...state,
+            data: [...state.data]
         }
     }
     else {
@@ -84,5 +95,7 @@ export let editTextTodoActionCreator = (id) => ({type: "editText", id:id})
 export let uploadTodoActionCreactor = (todos) => ({type: 'uploadTodos', todos: todos})
 export let filterCompletedAC = () => ({type: 'filterCompleted'})
 export let filterNotCompletedAC = () => ({type: 'filterNotCompleted'})
+export let showAllTodos = () => ({type: 'showAll'})
+
 
 export default TodoReducer

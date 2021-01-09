@@ -7,7 +7,8 @@ import { changeDoneActionCreator, deleteTodoActionCreator, editTextTodoActionCre
 
 let TodoItems = (props) => {
 // debugger
-    let Items = props.data.map((i, index) => <Item chengeState={props.changeState} checked={i.completed} text={i.title} delete={props.delete} done={i.complited} id={index} key={index} editText={props.editText}></Item>)
+
+    let Items = props.data.map((i, index) => <Item done={i.done} chengeState={props.changeState} checked={i.completed} text={i.title} delete={props.delete} id={index} key={index} editText={props.editText}></Item>)
 
     return (
         <div>

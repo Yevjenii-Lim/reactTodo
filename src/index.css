@@ -5,6 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 3em 0;
 }
 
 code {
@@ -16,4 +22,6 @@ code {
 #root {
   width: 500px;
   margin: 0 auto;
+  height: 100%;
+
 }
