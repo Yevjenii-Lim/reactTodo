@@ -3,6 +3,7 @@ import React from "react";
 import s from "./styles.module.css";
 
 let Item = (props) => {
+  // debugger
   let hide;
   let transparent;
   let background;
@@ -39,7 +40,6 @@ let Item = (props) => {
         {props.text}
       </label>
       <div>
-        {/* <button onClick={() => {props.editText(props.id)}}>Edit</button> */}
         <button className={s.btn} onClick={() => props.delete(props.id)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

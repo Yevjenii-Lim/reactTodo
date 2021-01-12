@@ -37,11 +37,9 @@ class Form extends React.Component {
           className={s.input}
           onChange={this.changeText}
           value={this.props.formText}
-          name=""
-          id=""
           ref={this.text}
         />
-        <button className={s.btnAdd, s.btn} onClick={this.addTodo}>
+        <button className={s.btnAdd + " " + s.btn} onClick={this.addTodo}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
